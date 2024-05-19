@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Book Store</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/books">Books</a></li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="book-list">
+            <h2>Available Books</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>Author</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="book : ${bookDTOList}">
+                    <td th:text="${book.title}">Book Title</td>
+                    <td th:text="${book.title}">Author Name</td>
+                    <td>$<span th:text="${book.Price}">0.00</span></td>
+                    <td><button th:onclick="'addToCart()'">Add to Cart</button></td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+</body>
+</html>
