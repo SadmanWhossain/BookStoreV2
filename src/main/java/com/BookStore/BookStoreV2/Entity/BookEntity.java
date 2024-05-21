@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -17,4 +19,7 @@ public class BookEntity {
     @ManyToOne
     @JoinColumn(name = "author_id")
     private AuthorEntity authorEntity;
+
+    @ManyToMany(mappedBy = "books")
+    private List<OrderEntity> Orders;
 }
