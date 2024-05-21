@@ -28,6 +28,10 @@ public class CustomerService {
         return mapToDTO(customerEntity);
     }
 
+    public  List<CustomerDTO> getAllCustomers() {
+        return customerRepository.findAll().stream().map(this::mapToDTO).collect(Collectors.toList());
+    }
+
     private CustomerEntity mapToEntity(CustomerDTO customerDTO) {
         CustomerEntity customerEntity = new CustomerEntity();
         customerEntity.setFirstName(customerDTO.getFirstName());
