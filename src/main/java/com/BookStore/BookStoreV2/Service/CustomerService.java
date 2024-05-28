@@ -4,6 +4,7 @@ import com.BookStore.BookStoreV2.DTO.AddressDTO;
 import com.BookStore.BookStoreV2.DTO.CustomerDTO;
 import com.BookStore.BookStoreV2.Entity.AddressEntity;
 import com.BookStore.BookStoreV2.Entity.CustomerEntity;
+import com.BookStore.BookStoreV2.Exceptions.RecordNotFound;
 import com.BookStore.BookStoreV2.Repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,15 +17,24 @@ public class CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
-    public CustomerDTO addCustomer(CustomerDTO customerDTO) {
+    public void addCustomer(CustomerDTO customerDTO) {
         CustomerEntity customerEntity = mapToEntity(customerDTO);
         CustomerEntity savedCustomer = customerRepository.save(customerEntity);
-        return mapToDTO(savedCustomer);
+        mapToDTO(savedCustomer);
+    }
+
+    public CustomerDTO loadCustomerByEmail(String email) throws RecordNotFound {
+        CustomerEntity customerEntity = customerRepository.findByEmail(email);
+
+        if (customerEntity == null) {
+            throw new RecordNotFound("Customer not found");
+        }
+        return mapToDTO(customerEntity);
     }
 
     public CustomerDTO getCustomer(long id) {
         CustomerEntity customerEntity = customerRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Customer not found"));
+                .orElseThrow(() -> new RecordNotFound("Customer not found with ID: " + id));
         return mapToDTO(customerEntity);
     }
 
@@ -56,8 +66,8 @@ public class CustomerService {
     private CustomerDTO mapToDTO(CustomerEntity customerEntity) {
 
 
-        List<AddressDTO> addressDTOs = customerEntity.getAddresses().stream().map(addressEntity -> new AddressDTO(addressEntity.getId(),addressEntity.getStreet(),addressEntity.getCity(),addressEntity.getZip())).collect(Collectors.toList());
+        List<AddressDTO> addressDTOs = customerEntity.getAddresses().stream().map(addressEntity -> new AddressDTO(addressEntity.getStreet(),addressEntity.getCity(),addressEntity.getZip())).collect(Collectors.toList());
 
-        return new CustomerDTO(customerEntity.getFirstName(),customerEntity.getLastName(),customerEntity.getEmail(),customerEntity.getPhone(),addressDTOs);
+        return new CustomerDTO(customerEntity.getId(), customerEntity.getFirstName(),customerEntity.getLastName(),customerEntity.getEmail(),customerEntity.getPhone(),addressDTOs);
     }
 }

@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class BookDTO {
+    private long id;
     private String title;
     private String price;
     private String author;
@@ -20,5 +21,8 @@ public class BookDTO {
                 ", price='" + price + '\'' +
                 ", author='" + author + '\'' +
                 '}';
+    }
+
+    public BookDTO() {
     }
 }

@@ -9,4 +9,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class AuthorDTO {
     private String authorName;
+
+    public AuthorDTO() {
+    }
 }

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/Style.css}" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <title th:text="${book.title}">Book</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Book Store</h1>
+    </header>
+    <main>
+        <section id="book">
+            <div class="book-info">
+                <h2 id="bookTitle" th:text="${book.title}">Book Title</h2>
+                <p><strong>Author:</strong> <span id="bookAuthor" th:text="${book.author}">Author Name</span></p>
+                <p><strong>Price:</strong> <span id="bookPrice" th:text="${book.price}">$0.00</span></p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

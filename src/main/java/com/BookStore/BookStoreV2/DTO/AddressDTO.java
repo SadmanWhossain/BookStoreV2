@@ -8,8 +8,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class AddressDTO {
-    private int id;
     private String street;
     private String city;
     private String zip;
+
+    public AddressDTO() {
+    }
 }

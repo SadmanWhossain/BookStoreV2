@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/Style.css}" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <title>Add Book</title>
+</head>
+<body>
+    <header>
+        <h1>Book Entry</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/books}">Books</a></li>
+            <li><a th:href="@{/about}">About Us</a></li>
+            <li><a th:href="@{/contact}">Contact</a></li>
+        </ul>
+    </nav>
+    <main>
+        <form th:action="@{/account}" th:object="${book}" method="post">
+            <div>
+                <label for="title">Book name:</label>
+                <input type="text" id="title" th:field="*{title}">
+            </div>
+            <div>
+                <label for="author">author:</label>
+                <input type="text" id="author" th:field="*{author}">
+            </div>
+            <div>
+                <label for="price">Price:</label>
+                <input type="text" id="price" th:field="*{price}">
+            </div>
+            <div>
+                <button type="submit">Register</button>
+            </div>
+        </form>
+    </main>
+</body>
+</html>

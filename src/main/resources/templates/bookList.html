@@ -35,7 +35,11 @@
                     <td th:text="${book.title}">Book Title</td>
                     <td th:text="${book.author}">Author Name</td>
                     <td>$<span th:text="${book.price}">0.00</span></td>
-                    <td><button th:onclick="'addToCart()'">Add to Cart</button></td>
+                    <td>
+                        <a th:href="@{/book/{id}(id=${book.id})}">
+                            <button>View Details</button>
+                        </a>
+                    </td>
                 </tr>
                 </tbody>
             </table>

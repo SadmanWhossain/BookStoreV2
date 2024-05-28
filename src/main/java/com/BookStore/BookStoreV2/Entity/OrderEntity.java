@@ -24,4 +24,8 @@ public class OrderEntity {
             inverseJoinColumns = @JoinColumn(name = "book_id")
     )
     private List<BookEntity> books;
+
+    @ManyToOne
+    @JoinColumn
+    private CustomerEntity customerEntity;
 }

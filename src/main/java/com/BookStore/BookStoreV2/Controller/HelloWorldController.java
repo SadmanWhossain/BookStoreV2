@@ -13,8 +13,8 @@ public class HelloWorldController {
     @GetMapping("/helloWorld")
     public String helloWorld(Model model) {
         List<BookDTO> bookDTOList = List.of(
-                new BookDTO("himu","100","humayun"),
-                new BookDTO("bimu","1000","bumayun")
+                new BookDTO((long) 5.0,"himu","100","humayun"),
+                new BookDTO((long) 5.0,"bimu","1000","bumayun")
         );
 
         model.addAttribute("bookDTOList", bookDTOList);
